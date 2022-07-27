@@ -25,7 +25,6 @@ function HomeScreen(props) {
         // Update history
         let historyArray = JSON.parse(localStorage.getItem('history'));
         if (historyArray.length<5) {
-            // console.log(walletAddress);
             historyArray.push(address || walletAddress);
         }
         else {
@@ -35,8 +34,6 @@ function HomeScreen(props) {
         setShowHistory(false);
         localStorage.setItem('history', JSON.stringify(historyArray));
 
-
-        // let filtered = result.result.join('').split('');
         let filtered = [];
         result.result.forEach(el => {
             if (el) {
@@ -44,7 +41,6 @@ function HomeScreen(props) {
             }        
         });
         setFoundNFTs(filtered);
-        // console.log(filtered);
     }
 
     const handleKeyDown = (event) => {
