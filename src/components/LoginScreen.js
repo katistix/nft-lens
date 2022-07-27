@@ -1,4 +1,11 @@
+import React, { useEffect, useState } from 'react';
+
 function LoginScreen(props) {
+    useEffect(() => {
+        document.title = "NFT Lens - Login";
+    });
+
+
     return (
         <div style={styles.container}>
             <img
@@ -36,7 +43,7 @@ const styles = {
         marginTop: '20px',
         width: '200px',
         height: '50px',
-        backgroundColor: '#00bcd4',
+        backgroundColor: '#5F00FF',
         color: '#fff',
         border: 'none',
         borderRadius: '5px',

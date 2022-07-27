@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NFTCard from './NFTCard';
+
+import '../App.css';
 
 
 function HomeScreen(props) {
+    useEffect(() => {
+        document.title = "NFT Lens - Home";
+    });
+
+
     const [ walletAddress, setWalletAddress ] = useState('');
     const [ foundNFTs, setFoundNFTs ] = useState([]);
 
@@ -23,34 +30,41 @@ function HomeScreen(props) {
         console.log(result.result);
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+          getNFTs();
+        }
+    }
+
     return (
         <div>
             {/* Top Bar */}
             <div
                 style={styles.topBar}>
                 <img 
+                    alt='NFT Lens Logo'
                     style={styles.logo}
-                    src={require('../assets/logo.png')}/>
-                <button
-                    style={styles.logoutBtn}
-                    onClick={props.logOut}
-                    disabled={props.isAuthenticating}>Logout</button>
-            
-                
-            </div>
-
-
-            {/* Bottom bar */}
-            <div style={styles.inputs}>
+                    src={require('../assets/logo_horizontal.png')}/>
                 <input
                     style={styles.input}
                     placeholder="Enter Wallet Address"
                     onChange={e => setWalletAddress(e.target.value)}
-                    value={walletAddress} />
-                <button 
-                    style={styles.search}
-                    onClick={getNFTs} 
-                    disabled={!props.isAuthenticated}>Search</button>
+                    value={walletAddress}
+                    onKeyDown={handleKeyDown}/>
+                <img
+                    alt="Logout button"
+                    style={styles.logoutBtn}
+                    src={require('../assets/Logout.png')}
+                    onClick={props.logOut}/>
+                <img
+                    alt="Search button"
+                    style={styles.searchButton}
+                    src={require('../assets/Search.png')}
+                    onClick={getNFTs}/>   
+                <img
+                    alt='History button'
+                    style={styles.historyButton}
+                    src={require('../assets/History.png')}/>
             </div>
 
 
@@ -67,7 +81,7 @@ function HomeScreen(props) {
                 ))}
             </div>
 
-            
+
 
         </div>
     )
@@ -87,26 +101,26 @@ const styles = {
         boxShadow: "0 -4px 15px -4px",
     },
     input: {
-        bottom: '5px',
-        marginLeft: '5px',
+        bottom: '15px',
         position: 'absolute',
-        width: 'calc(100% - 30px)',
-        fontSize: '18px',
-        height: '60px',
+        width: '350px',
+        fontSize: '14px',
+        height: '30px',
         borderRadius: '5px',
-        paddingLeft: '20px',
+        textAlign: 'center',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        backgroundColor: '#ddd',
+        border: 'none',
+        outline: 'none',
     },
     search:{
         position: 'absolute',
         bottom: '7px',
         right: '20px',
-        // width: '60px',
         height: '60px',
-        // backgroundColor: '#fff',
         fontSize: '30px',
         border: 'none',
-
-
     },
     cardGrid:{
         marginTop: '60px',
@@ -131,20 +145,33 @@ const styles = {
     },
     logo: {
         position: 'absolute',
-        top: '25px',
-        left: '20px',
-        height: '20px',
+        top: '15px',
+        left: '15px',
+        height: '30px',
     },
     logoutBtn: {
         position: 'absolute',
+        top: '15px',
         right: '20px',
-        top: '5px',
-        fontSize: '20px',
-        fontWeight: 'bold',
-        color: '#f00',
+        height: '35px',
+        width: '35px',
+        backgroundColor: '#fff',
         cursor: 'pointer',
-        border: 'none',
-        borderRadius: '5px',
-        height: '50px',
+    },
+    searchButton: {
+        position: 'absolute',
+        bottom: '15px',
+        left: 'calc(50% + 180px)',
+        height: '30px',
+        width: '30px',
+        cursor: 'pointer',
+    },
+    historyButton: {
+        position: 'absolute',
+        bottom: '15px',
+        right: 'calc(50% + 180px)',
+        height: '30px',
+        width: '30px',
+        cursor: 'pointer',
     }
 }
