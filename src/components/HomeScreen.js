@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import NFTCard from './NFTCard';
 import HistoryView from './HistoryView';
 
@@ -25,21 +25,26 @@ function HomeScreen(props) {
         // Update history
         let historyArray = JSON.parse(localStorage.getItem('history'));
         if (historyArray.length<5) {
-            console.log(walletAddress);
+            // console.log(walletAddress);
             historyArray.push(address || walletAddress);
         }
         else {
             historyArray.shift();
             historyArray.push(address || walletAddress);
         }
-        console.log(historyArray);
         setShowHistory(false);
         localStorage.setItem('history', JSON.stringify(historyArray));
 
 
-
-        setFoundNFTs(result.result);
-        console.log(result.result);
+        // let filtered = result.result.join('').split('');
+        let filtered = [];
+        result.result.forEach(el => {
+            if (el) {
+                filtered.push(el);
+            }        
+        });
+        setFoundNFTs(filtered);
+        // console.log(filtered);
     }
 
     const handleKeyDown = (event) => {
@@ -73,7 +78,7 @@ function HomeScreen(props) {
                     alt="Search button"
                     style={styles.searchButton}
                     src={require('../assets/Search.png')}
-                    onClick={getNFTs}/>   
+                    onClick={() => getNFTs()}/>   
                 <img
                     alt='History button'
                     style={styles.historyButton}

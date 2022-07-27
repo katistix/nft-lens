@@ -5,30 +5,53 @@ function NFTCard(props){
     const { fontSize, ref } = useFitText();
     const [ nftMeta, setNftMeta] = useState({})
     useEffect(() => {
+
         try {
-            console.log(JSON.parse(props.nft.metadata).name || '');
+            console.log(JSON.parse(props.nft.metadata).name || 'No Name');
+            // if (!JSON.parse(props.nft.metadata).name) {
+            //     console.log("No name");
+            // }
             setNftMeta(JSON.parse(props.nft.metadata));
         }
         catch (e) {
-            console.log('');
+            console.log("No metadata");
         }
 
     }
-    , [props.nft.metadata]);
+    , []);
 
-    return (
-        <div style={styles.card}>
-            <h1
-                ref={ref}
-                style={{fontSize, height: "40px"}}>
-                {nftMeta.name}
-            </h1>
-            <img
-                style={styles.img}
-                alt={nftMeta.name}
-                src={nftMeta.image}/>
-        </div>
-    )
+    console.log(nftMeta);
+    if (nftMeta.name) {
+        return (
+            <div style={styles.card}>
+                <h1
+                    ref={ref}
+                    style={{fontSize, height: "40px"}}>
+                    {nftMeta.name}
+                </h1>
+                <img
+                    style={styles.img}
+                    alt={nftMeta.name}
+                    src={nftMeta.image}/>
+            </div>
+        )
+    }
+    else return null;
+    // return (
+    //     {nftMeta ? (
+    //         <div style={styles.card}>
+    //             <h1
+    //                 ref={ref}
+    //                 style={{fontSize, height: "40px"}}>
+    //                 {nftMeta.name}
+    //             </h1>
+    //             <img
+    //                 style={styles.img}
+    //                 alt={nftMeta.name}
+    //                 src={nftMeta.image}/>
+    //         </div>
+    //     ):null}
+    // )
 }
 
 export default NFTCard;
