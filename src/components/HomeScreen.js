@@ -82,6 +82,13 @@ function HomeScreen(props) {
             </div>
 
 
+            {/* Nothing here for now */}
+            {foundNFTs.length === 0 ? (
+                <h2 style={styles.nothingHere}>
+                    {"Nothing here yet😅Try searching for something else"}
+                </h2>
+            ):null}
+
 
         </div>
     )
@@ -90,6 +97,17 @@ function HomeScreen(props) {
 export default HomeScreen;
 
 const styles = {
+    nothingHere: {
+        textAlign: 'center',
+        fontSize: '25px',
+        color: '#979797',
+        fontWeight: 'bold',
+        fontFamily: 'Roboto',
+        position: 'absolute',
+        width: '100%',
+        top: '50%',
+        transform: 'translateY(-50%)',
+    },
     inputs:{
         position: 'fixed',
         bottom: '0',
@@ -129,9 +147,6 @@ const styles = {
         justifyContent: 'space-around',
         overflow: 'hidden',
     },
-
-
-
 
     topBar: {
         position: 'fixed',
