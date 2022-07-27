@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import NFTCard from './NFTCard';
+import HistoryView from './HistoryView';
 
 import '../App.css';
 
@@ -12,17 +13,28 @@ function HomeScreen(props) {
 
     const [ walletAddress, setWalletAddress ] = useState('');
     const [ foundNFTs, setFoundNFTs ] = useState([]);
+    const [ showHistory, setShowHistory ] = useState(false);
 
 
-    const getNFTs = async () => {
+    const getNFTs = async (address) => {
         const options = {
-            // chain: "polygon",
-            // address: "0x75e3e9c92162e62000425c98769965a76c2e387a",
-            address: walletAddress
+            address: address || walletAddress ,
         };
         const result = await props.Web3Api.account.getNFTs(options);
 
-        
+        // Update history
+        let historyArray = JSON.parse(localStorage.getItem('history'));
+        if (historyArray.length<5) {
+            console.log(walletAddress);
+            historyArray.push(address || walletAddress);
+        }
+        else {
+            historyArray.shift();
+            historyArray.push(address || walletAddress);
+        }
+        console.log(historyArray);
+        setShowHistory(false);
+        localStorage.setItem('history', JSON.stringify(historyArray));
 
 
 
@@ -50,7 +62,8 @@ function HomeScreen(props) {
                     placeholder="Enter Wallet Address"
                     onChange={e => setWalletAddress(e.target.value)}
                     value={walletAddress}
-                    onKeyDown={handleKeyDown}/>
+                    onKeyDown={handleKeyDown}
+                    />
                 <img
                     alt="Logout button"
                     style={styles.logoutBtn}
@@ -64,7 +77,15 @@ function HomeScreen(props) {
                 <img
                     alt='History button'
                     style={styles.historyButton}
-                    src={require('../assets/History.png')}/>
+                    src={require('../assets/History.png')}
+                    onClick={() => setShowHistory(!showHistory)}/> 
+                
+                {showHistory ? (
+                    <HistoryView
+                        getNFTs={getNFTs}
+                        setWalletAddress={setWalletAddress}
+                        setShowHistory={setShowHistory}/>
+                ):null}
             </div>
 
 
@@ -81,11 +102,10 @@ function HomeScreen(props) {
                 ))}
             </div>
 
-
             {/* Nothing here for now */}
             {foundNFTs.length === 0 ? (
                 <h2 style={styles.nothingHere}>
-                    {"Nothing here yet😅Try searching for something else"}
+                    {"Nothing here yet😅 Try searching for something else"}
                 </h2>
             ):null}
 
@@ -95,6 +115,8 @@ function HomeScreen(props) {
 }
 
 export default HomeScreen;
+
+
 
 const styles = {
     nothingHere: {
@@ -141,7 +163,7 @@ const styles = {
         border: 'none',
     },
     cardGrid:{
-        marginTop: '60px',
+        marginTop: '80px',
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
