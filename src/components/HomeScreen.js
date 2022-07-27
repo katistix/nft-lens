@@ -25,6 +25,19 @@ function HomeScreen(props) {
 
     return (
         <div>
+            {/* Top Bar */}
+            <div
+                style={styles.topBar}>
+                <img 
+                    style={styles.logo}
+                    src={require('../assets/logo.png')}/>
+                <button
+                    style={styles.logoutBtn}
+                    onClick={props.logOut}
+                    disabled={props.isAuthenticating}>Logout</button>
+            
+                
+            </div>
 
 
             {/* Bottom bar */}
@@ -41,7 +54,6 @@ function HomeScreen(props) {
             </div>
 
 
-            <button onClick={props.logOut} disabled={props.isAuthenticating}>Logout</button>
 
             
 
@@ -54,6 +66,8 @@ function HomeScreen(props) {
 
                 ))}
             </div>
+
+            
 
         </div>
     )
@@ -101,4 +115,36 @@ const styles = {
         justifyContent: 'space-around',
         overflow: 'hidden',
     },
+
+
+
+
+    topBar: {
+        position: 'fixed',
+        top: '0',
+        height: '60px',
+        width: '100vw',
+        backgroundColor: '#fff',
+        borderBottom: '1px solid #ccc',
+        boxShadow: '0 0 15px -4px',
+        zIndex: '100',
+    },
+    logo: {
+        position: 'absolute',
+        top: '25px',
+        left: '20px',
+        height: '20px',
+    },
+    logoutBtn: {
+        position: 'absolute',
+        right: '20px',
+        top: '5px',
+        fontSize: '20px',
+        fontWeight: 'bold',
+        color: '#f00',
+        cursor: 'pointer',
+        border: 'none',
+        borderRadius: '5px',
+        height: '50px',
+    }
 }
