@@ -1,6 +1,6 @@
 ![NFT Lens Logo](./src/assets/logo.png)
 # NFT Lens (Open InfoEducatie 2022)
-NFT Lens is a simple Web App that helps you visualize NFTs from a specific Address.
+NFT Lens is a simple Web App that helps you visualize NFTs of a specific Wallet Address.
 
 ## Sequence Diagram
 The app uses the `NFT API` from [Moralis](https://moralis.io) to gather `metadata` from a variety of Blockchain Networks:
@@ -28,4 +28,5 @@ To be able to use this app, you need to connect your [MetaMask Wallet](https://m
 # 🔜 Future Improvements
 - Being able so save Addresses
 - Bigger preview for NFTs
-
+- Implementation with Docker
+- Automated deployment using Github Action

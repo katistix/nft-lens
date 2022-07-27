@@ -8,16 +8,12 @@ function HistoryView(props) {
             setHistory(historyArray);
         }
 
-        console.log(historyArray);
-
     }, []);
 
     const recentPressed = (address) => {
-        console.log(address);
         props.setWalletAddress(address);
         props.getNFTs(address);
         props.setShowHistory(false);
-        // props.setIsAuthenticated(true);
 
     }
 
@@ -25,7 +21,6 @@ function HistoryView(props) {
     return (
         <div style={styles.container}>
             {history.slice(0).reverse().map(address => 
-            // console.log(address)
             (
                 <div
                     style={styles.item}

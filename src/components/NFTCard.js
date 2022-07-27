@@ -22,8 +22,7 @@ function NFTCard(props){
                 <img
                     style={styles.img}
                     alt={nftMeta.name}
-                    src={nftMeta.image}
-                    onClick={() => console.log('d')}/>
+                    src={nftMeta.image}/>
             </div>
         )
     }

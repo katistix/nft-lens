@@ -13,6 +13,7 @@ function LoginScreen(props) {
                 src={require("../assets/loginBg.png")}
                 style={styles.bgImg}/>
             <img
+                alt="nft lens logo"
                 src={require("../assets/logo.png")}
                 style={styles.logo}/>
             <h1 style={styles.title}>A minimal NFT Visualizer</h1>
