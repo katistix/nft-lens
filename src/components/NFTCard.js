@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import useFitText from "use-fit-text";
 
 function NFTCard(props){
+    const { fontSize, ref } = useFitText();
     const [ nftMeta, setNftMeta] = useState({})
-    // console.log(JSON.parse(props.nft.metadata).name);
     useEffect(() => {
         try {
             console.log(JSON.parse(props.nft.metadata).name || '');
@@ -18,8 +19,8 @@ function NFTCard(props){
     return (
         <div style={styles.card}>
             <h1
-                className="underline"
-                style={styles.cardHeader}>
+                ref={ref}
+                style={{fontSize, height: "40px"}}>
                 {nftMeta.name}
             </h1>
             <img
@@ -60,6 +61,8 @@ const styles = {
         width: '200px',
         height: '200px',
         bottom: '0px',
-        borderRadius: '10px',
+        borderBottomRightRadius: '10px',
+        borderBottomLeftRadius: '10px',
+
     }
 }
