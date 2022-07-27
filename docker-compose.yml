@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  app:
+    build: ./
+    restart: unless-stopped
+    environment:
+      - MORALIS_MASTER_KEY=$MORALIS_MASTER_KEY
+    ports:
+      - 3000:3000
+    stdin_open: true
+    tty: true

@@ -1,0 +1,16 @@
+name: Deploy to RPi
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: rpi
+    steps:
+      # Run the docker-compose file
+      - uses: actions/checkout@v2
+      - name: Run docker-compose
+        env:
+          PORT: ${{ secrets.MORALIS_MASTER_KEY }}
+        run: docker-compose up -d --build
+      
