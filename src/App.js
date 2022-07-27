@@ -6,7 +6,6 @@ import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import LoginScreen from './components/LoginScreen';
 import HomeScreen from './components/HomeScreen';
 
-import NFT from './components/NFT';
 
 
 function App() {

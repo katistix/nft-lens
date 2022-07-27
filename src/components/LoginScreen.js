@@ -17,6 +17,7 @@ export default LoginScreen;
 
 const styles = {
     container: {
+        overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
