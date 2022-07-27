@@ -12,13 +12,6 @@ function App() {
     const Web3Api = useMoralisWeb3Api();
     const { authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
 
-    useEffect(() => {
-    if (isAuthenticated) {
-      // add your logic here
-      
-    }
-  }, [isAuthenticated]);
-
     const login = async () => {
       if (!isAuthenticated) {
 

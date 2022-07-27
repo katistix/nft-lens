@@ -9,6 +9,7 @@ function LoginScreen(props) {
     return (
         <div style={styles.container}>
             <img
+                alt="background"
                 src={require("../assets/loginBg.png")}
                 style={styles.bgImg}/>
             <img
