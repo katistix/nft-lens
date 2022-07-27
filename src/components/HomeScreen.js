@@ -20,7 +20,14 @@ function HomeScreen(props) {
         const options = {
             address: address || walletAddress ,
         };
-        const result = await props.Web3Api.account.getNFTs(options);
+        let result;
+        try{
+           result = await props.Web3Api.account.getNFTs(options);
+        } 
+        catch(error){
+            alert(error);
+            return;
+        }
 
         // Update history
         let historyArray = JSON.parse(localStorage.getItem('history'));
