@@ -11,6 +11,10 @@ function NFTCard(props){
     }
     , []);
 
+    const handleClick = (url) => {
+        window.open(url, '_blank').focus();
+    }
+
     if (nftMeta.name) {
         return (
             <div style={styles.card}>
@@ -22,7 +26,8 @@ function NFTCard(props){
                 <img
                     style={styles.img}
                     alt={nftMeta.name}
-                    src={nftMeta.image}/>
+                    src={nftMeta.image}
+                    onClick={() => handleClick(nftMeta.image)}/>
             </div>
         )
     }
@@ -34,7 +39,6 @@ export default NFTCard;
 
 const styles = {
     card:{
-        zIndex: '-20',
         position: 'relative',
         width: '200px',
         height: '250px',
@@ -45,12 +49,26 @@ const styles = {
         
     },
     img:{
-        position: 'absolute',
+        // position: 'absolute',
         width: '200px',
         height: '200px',
         bottom: '0',
         borderBottomRightRadius: '10px',
         borderBottomLeftRadius: '10px',
         zIndex: '10',
+        display: 'block',
+        cursor: 'pointer'
+    },
+    button:{
+        position: 'absolute',
+        width: '200px',
+        height: '30px',
+        bottom: '0',
+        borderBottomRightRadius: '10px',
+        borderBottomLeftRadius: '10px',
+        zIndex: '10',
+        display: 'block',
+        backgroundColor: '#fff',
     }
+
 }

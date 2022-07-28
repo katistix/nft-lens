@@ -24,9 +24,9 @@ To be able to use this app, you need to connect your [MetaMask Wallet](https://m
 - Connect with MetaMask
 - Search NFTs by Wallet Address
 - Simple search history
+- Click on an image to preview it
 
 # 🔜 Future Improvements
 - Being able so save Addresses
-- Bigger preview for NFTs
 - Implementation with Docker
 - Automated deployment using Github Action

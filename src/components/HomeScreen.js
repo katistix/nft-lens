@@ -47,6 +47,12 @@ function HomeScreen(props) {
                 filtered.push(el);
             }        
         });
+
+        if (filtered.length === 0) {
+            alert("No NFTs found");
+        }
+            
+        
         setFoundNFTs(filtered);
     }
 
@@ -171,6 +177,7 @@ const styles = {
         border: 'none',
     },
     cardGrid:{
+        // position: 'absolute',
         marginTop: '80px',
         display: 'flex',
         flexWrap: 'wrap',

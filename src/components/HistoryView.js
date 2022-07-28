@@ -59,6 +59,7 @@ const styles = {
         textAlign: 'center',
         width: '100%',
         borderBottom: '1px solid #ccc',
+        cursor: 'pointer'
 
     }
 }
