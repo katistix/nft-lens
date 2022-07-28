@@ -31,6 +31,10 @@ function HomeScreen(props) {
 
         // Update history
         let historyArray = JSON.parse(localStorage.getItem('history'));
+        if(!historyArray){
+            historyArray = [];
+        }
+        
         if (historyArray.length<5) {
             historyArray.push(address || walletAddress);
         }
